@@ -1,0 +1,15 @@
+{
+  "name": "w-time",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=10"
+  },
+  "description": "Time window",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["timeWindow", "redis", "slide", "roll"],
+  "author": "Hanke Xu <hankexu837@qq.com>",
+  "license": "MIT"
+}
