@@ -5,11 +5,51 @@
     "node": ">=10"
   },
   "description": "Time window",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "test": "jest"
   },
-  "keywords": ["timeWindow", "redis", "slide", "roll"],
+  "jest": {
+    "transform": {
+      "^.+\\.(t|j)sx?$": "ts-jest"
+    },
+    "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
+  "keywords": [
+    "timeWindow",
+    "redis",
+    "slide",
+    "roll"
+  ],
+  "files": [
+    "lib/**/*"
+  ],
   "author": "Hanke Xu <hankexu837@qq.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/ioredis": "^4.16.2",
+    "@types/jest": "^25.2.2",
+    "@types/lodash": "^4.14.150",
+    "jest": "^26.0.1",
+    "prettier": "^2.0.5",
+    "ts-jest": "^25.5.1",
+    "tslint": "^6.1.2",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.9.2"
+  },
+  "dependencies": {
+    "ioredis": "^4.16.3",
+    "lodash": "^4.17.15"
+  }
 }
