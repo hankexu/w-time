@@ -2,6 +2,7 @@ const TimeWindow = require('../lib');
 
 const tw = new TimeWindow(10000,{
   storage:'redis',
+  durationName:'10s'
 });
 
 tw.on('overflow', (key, list) => {

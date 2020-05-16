@@ -15,16 +15,17 @@ class RedisStorer extends Storer {
     if (options?.namespace) {
       this.namespace = options.namespace;
     }
-    this.redis = new IORedis(options?.client);
-    console.log(this.redis);
     this.durationKey = `${this.namespace}:${this.duration}`;
-    this.redis.set(this.durationKey, duration, 'PX', duration).then(ret=>{
-      console.log(ret);
-    });
+    if (options?.durationName) {
+      this.durationKey = `${this.namespace}:${options.durationName}`;
+    }
+    this.redis = new IORedis(options?.client);
+
+    this.redis.set(this.durationKey, duration).then();
   }
 
   async register(key: string, limits: number) {
-    // this.redis.set();
+    await this.redis.set(`${this.durationKey}:${key}`,limits);
   }
 
   async add(key: string, data: any): Promise<boolean> {
