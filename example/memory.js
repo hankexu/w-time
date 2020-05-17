@@ -10,10 +10,16 @@ tw.on('overflow', (key, list) => {
 });
 
 
-const key = 'xxx';
+const key = 'xxxfdsjklj';
 tw.register(key, 5).then();
 setInterval(() => {
-  tw.add(key, { foo: 'bar' });
+  tw.add(key, { foo: Math.random() });
+}, 100);
+
+
+tw.register(key+"222222", 5).then();
+setInterval(() => {
+  tw.add(key+"222222", { foo: Math.random() });
 }, 100);
 
 

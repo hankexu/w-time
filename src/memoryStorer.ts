@@ -34,11 +34,11 @@ export = class MemoryStorer extends Storer {
     }
     await this.cleanTimeout(key);
     // @ts-ignore
-    return this.data.get(key).length > this.limitsMap.get(key);
+    return this.data.get(key).length >= this.limitsMap.get(key);
   }
 
-  async getList(key: string): Promise<Array<Data>> {
-    return this.data.get(key) || [];
+  async getList(key: string): Promise<Array<any>> {
+    return (this.data.get(key) || []).map(item=>item.data);
   }
 
   async cleanTimeout(key: string): Promise<void> {
