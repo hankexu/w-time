@@ -1,5 +1,5 @@
 {
-  "name": "w-time",
+  "name": "window-time",
   "version": "1.0.0",
   "engines": {
     "node": ">=10"
