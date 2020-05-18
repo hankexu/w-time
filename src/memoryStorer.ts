@@ -4,7 +4,7 @@ import { Data } from './interface';
 export = class MemoryStorer extends Storer {
   private data: Map<string, Array<Data>> = new Map();
   private limitsMap: Map<string, number> = new Map();
-  private readonly duration: number;
+  private duration: number;
 
   constructor(duration: number) {
     super();
@@ -49,5 +49,9 @@ export = class MemoryStorer extends Storer {
         this.data.set(key, list.slice(-index));
       }
     }
+  }
+
+  async setDuration(duration: number) {
+    this.duration = duration;
   }
 }

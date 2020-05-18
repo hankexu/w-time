@@ -5,11 +5,10 @@ import {Redis} from 'ioredis';
 import {isObjectLike} from 'lodash'
 
 class RedisStorer extends Storer {
-    private readonly duration: number;
+    private duration: number;
     private redis: Redis;
-    private namespace: string = 'w-time';
-    private durationKey: string;
-    private durationMap: Map<string, number> = new Map();
+    private readonly namespace: string = 'w-time';
+    private readonly durationKey: string;
     private limitsMap: Map<string, number> = new Map();
 
     constructor(duration: number, options?: Options) {
@@ -23,7 +22,6 @@ class RedisStorer extends Storer {
             this.durationKey = `${this.namespace}:${options.durationName}`;
         }
         this.redis = new IORedis(options?.client);
-        this.durationMap.set(this.durationKey, duration);
     }
 
     private zSetKey(key: string) {
@@ -34,6 +32,9 @@ class RedisStorer extends Storer {
         this.limitsMap.set(this.zSetKey(key), limits);
     }
 
+    async setDuration(duration:number) {
+        this.duration = duration;
+    }
 
     async add(key: string, data: any): Promise<boolean> {
         const zKey = this.zSetKey(key);

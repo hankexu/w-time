@@ -27,6 +27,11 @@ class TimeWindow extends EventEmitter {
     }
   }
 
+  async setDuration(duration:number) {
+    this.duration = duration;
+    await this.storer.setDuration(duration);
+  }
+
   async register(key: string, limits: number) {
     await this.storer.register(key, limits);
   }
