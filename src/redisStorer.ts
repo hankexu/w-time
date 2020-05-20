@@ -44,6 +44,7 @@ class RedisStorer extends Storer {
         }
         const now = Date.now();
         await this.redis.zadd(zKey, now, data);
+        await this.redis.pexpire(zKey,this.duration);
         await this.cleanTimeout(zKey, now);
         const count = await this.redis.zcount(zKey, 0, now);
         return count >= limits;
