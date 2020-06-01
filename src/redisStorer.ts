@@ -32,6 +32,11 @@ class RedisStorer extends Storer {
         this.limitsMap.set(this.zSetKey(key), limits);
     }
 
+    async clean(key:string){
+        const zKey = this.zSetKey(key);
+        await this.redis.del(zKey);
+    }
+
     async setDuration(duration:number) {
         this.duration = duration;
     }
@@ -50,7 +55,7 @@ class RedisStorer extends Storer {
         return count >= limits;
     }
 
-    async getList(key: string): Promise<Array<Data>> {
+    async getList(key: string): Promise<Data[]> {
         const list = await this.redis.zrangebyscore(this.zSetKey(key), 0, Date.now());
         return list.map(item => {
             let obj;
