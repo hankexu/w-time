@@ -36,6 +36,10 @@ class TimeWindow extends EventEmitter {
     await this.storer.register(key, limits);
   }
 
+  async clean(key:string){
+    await this.storer.clean(key);
+  }
+
   async add(key: string, data: any) {
     const overflow = await this.storer.add(key, data);
     if (overflow) {
